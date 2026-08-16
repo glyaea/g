@@ -25,15 +25,18 @@ def concat(*lists):
 	return out
 
 
-def constant(D):
+def constant(_object_):
 	# make set, list, or dict immutable
-	match D:
+	match _object_:
 		case set():
-			return frozenset(constant(d) for d in D)
+			return frozenset(constant(subobject) for subobject in _object_)
 		case list():
-			return tuple(constant(d) for d in D)
+			return tuple(constant(subobject) for subobject in _object_)
 		case dict():
-			return frozenset((constant(k), constant(v)) for k, v in D.items())
+			return frozenset(
+				(constant(key), constant(value))
+				for key, value in _object_.items()
+			)
 
 
 def merge(*dicts, keep="right"):
