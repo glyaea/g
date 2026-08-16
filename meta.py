@@ -1,7 +1,20 @@
+import builtins
 import datetime
 
 
+def range(start, stop=None, step=1):
+	"""
+	make `range(...)` inclusive of endpoint
+	"""
+	if stop is None:
+		return builtins.range(start + 1)
+	return builtins.range(start, stop + (1 if step > 0 else -1), step)
+
+
 def type(_object_):
+	"""
+	make `type(...)` use `isinstance(...)` behavior
+	"""
 	class Type:
 		def __eq__(self, _type_):
 			return isinstance(_object_, _type_)
@@ -9,6 +22,9 @@ def type(_object_):
 
 
 def constant(D):
+	"""
+	make set, list, or dict immutable
+	"""
 	if type(D) == set:
 		return frozenset(constant(d) for d in D)
 	elif type(D) == list:
@@ -20,6 +36,9 @@ def constant(D):
 
 
 def time(_format_):
+	"""
+	give time in YYYY-MM-DD or HH:MM:SS format
+	"""
 	now = datetime.datetime.now()
 	if _format_ == "YYYY-MM-DD":
 		return now.strftime("%Y-%m-%d")
