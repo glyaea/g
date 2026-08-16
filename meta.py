@@ -3,14 +3,14 @@ import builtins
 
 
 def range(start, stop=None, step=1):
-""" make range(...) include endpoint """
+	# make range(...) include endpoint """
 	if stop is None:
 		return builtins.range(start + 1)
 	return builtins.range(start, stop + (1 if step > 0 else -1), step)
 
 
 def type(_object_):
-""" make type(...) work like isinstance(...) """
+	# make type(...) work like isinstance(...)
 	class Type:
 		def __eq__(self, _type_):
 			return isinstance(_object_, _type_)
@@ -18,7 +18,7 @@ def type(_object_):
 
 
 def concat(*lists):
-""" concatenate lists """
+	# concatenate lists
 	out = lists[0].copy()
 	for _list_ in lists[1:]:
 		out.extend(_list_)
@@ -26,7 +26,7 @@ def concat(*lists):
 
 
 def constant(D):
-""" make set, list, or dict immutable """
+	# make set, list, or dict immutable
 	if type(D) == set:
 		return frozenset(constant(d) for d in D)
 	elif type(D) == list:
@@ -38,17 +38,17 @@ def constant(D):
 
 
 def merge(*dicts, keep="right"):
-	""" merge dicts """
+	# merge dicts
 	if keep == "left":
 		dicts = dicts[::-1]
 	out = dicts[0].copy()
-	for D in dicts[1:]:
-		out.update(D)
+	for _dict_ in dicts[1:]:
+		out.update(_dict_)
 	return out
 
 
 def time(_format_):
-""" return time in YYYY-MM-DD or HH:MM:SS format """
+	# return time in YYYY-MM-DD or HH:MM:SS format
 	now = datetime.now()
 	if _format_ == "YYYY-MM-DD":
 		return now.strftime("%Y-%m-%d")
@@ -57,5 +57,5 @@ def time(_format_):
 
 
 def union(*sets):
-""" union sets """
+	# union sets
 	return set.union(*sets)
