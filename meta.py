@@ -37,6 +37,16 @@ def constant(D):
 		return D
 
 
+def merge(*dicts, keep="right"):
+	""" merge dicts """
+	if keep == "left":
+		dicts = dicts[::-1]
+	out = dicts[0].copy()
+	for D in dicts[1:]:
+		out.update(D)
+	return out
+
+
 def time(_format_):
 """ return time in YYYY-MM-DD or HH:MM:SS format """
 	now = datetime.now()
