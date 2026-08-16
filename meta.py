@@ -18,7 +18,7 @@ def type(_object_):
 
 
 def constant(D):
-""" make set, list, or dict immutable """
+""" make `set`, `list`, or `dict` immutable """
 	if type(D) == set:
 		return frozenset(constant(d) for d in D)
 	elif type(D) == list:
@@ -30,7 +30,7 @@ def constant(D):
 
 
 def time(_format_):
-""" give time in YYYY-MM-DD or HH:MM:SS format """
+""" return time in YYYY-MM-DD or HH:MM:SS format """
 	now = datetime.datetime.now()
 	if _format_ == "YYYY-MM-DD":
 		return now.strftime("%Y-%m-%d")
