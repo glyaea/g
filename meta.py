@@ -3,22 +3,30 @@ import datetime
 
 
 def range(start, stop=None, step=1):
-""" make `range(...)` inclusive of endpoint """
+""" make range(...) include endpoint """
 	if stop is None:
 		return builtins.range(start + 1)
 	return builtins.range(start, stop + (1 if step > 0 else -1), step)
 
 
 def type(_object_):
-""" make `type(...)` use `isinstance(...)` behavior """
+""" make type(...) work like isinstance(...) """
 	class Type:
 		def __eq__(self, _type_):
 			return isinstance(_object_, _type_)
 	return Type()
 
 
+def concat(*lists):
+""" concatenate lists """
+	out = []
+	for _list_ in lists:
+		out.extend(_list_)
+	return out
+
+
 def constant(D):
-""" make `set`, `list`, or `dict` immutable """
+""" make set, list, or dict immutable """
 	if type(D) == set:
 		return frozenset(constant(d) for d in D)
 	elif type(D) == list:
@@ -36,3 +44,8 @@ def time(_format_):
 		return now.strftime("%Y-%m-%d")
 	elif _format_ == "HH:MM:SS":
 		return now.strftime("%H:%M:%S")
+
+
+def union(*sets):
+""" union sets """
+	return set().union(*sets)
