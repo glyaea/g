@@ -1,5 +1,5 @@
+from datetime import datetime
 import builtins
-import datetime
 
 
 def range(start, stop=None, step=1):
@@ -19,8 +19,8 @@ def type(_object_):
 
 def concat(*lists):
 """ concatenate lists """
-	out = []
-	for _list_ in lists:
+	out = lists[0].copy()
+	for _list_ in lists[1:]:
 		out.extend(_list_)
 	return out
 
@@ -39,7 +39,7 @@ def constant(D):
 
 def time(_format_):
 """ return time in YYYY-MM-DD or HH:MM:SS format """
-	now = datetime.datetime.now()
+	now = datetime.now()
 	if _format_ == "YYYY-MM-DD":
 		return now.strftime("%Y-%m-%d")
 	elif _format_ == "HH:MM:SS":
@@ -48,4 +48,4 @@ def time(_format_):
 
 def union(*sets):
 """ union sets """
-	return set().union(*sets)
+	return set.union(*sets)
