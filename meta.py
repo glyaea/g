@@ -27,14 +27,13 @@ def concat(*lists):
 
 def constant(D):
 	# make set, list, or dict immutable
-	if type(D) == set:
-		return frozenset(constant(d) for d in D)
-	elif type(D) == list:
-		return tuple(constant(d) for d in D)
-	elif type(D) == dict:
-		return frozenset((constant(k), constant(v)) for k, v in D.items())
-	else:
-		return D
+	match D:
+		case set():
+			return frozenset(constant(d) for d in D)
+		case list():
+			return tuple(constant(d) for d in D)
+		case dict():
+			return frozenset((constant(k), constant(v)) for k, v in D.items())
 
 
 def merge(*dicts, keep="right"):
@@ -49,11 +48,11 @@ def merge(*dicts, keep="right"):
 
 def time(_format_):
 	# return time in YYYY-MM-DD or HH:MM:SS format
-	now = datetime.now()
-	if _format_ == "YYYY-MM-DD":
-		return now.strftime("%Y-%m-%d")
-	elif _format_ == "HH:MM:SS":
-		return now.strftime("%H:%M:%S")
+	match _format_:
+		case "YYYY-MM-DD":
+			return datetime.now().strftime("%Y-%m-%d")
+		case "HH:MM:SS":
+			return datetime.now().strftime("%H:%M:%S")
 
 
 def union(*sets):
