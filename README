@@ -1,0 +1,14 @@
+🌸 g
+
+🐍 Python
+
+range   range(0, 1)                range(*[0, 1])   
+        range(0, 2, 1)             range(*[0, 1, 2])
+type    type(37) == int            True
+        type(37)                   <class 'int'>
+concat  concat([0, 1], [1, 2])     [0, 1, 1, 2]
+merge   merge({"a": 0}, {"b": 1})  {"a": 0, "b": 1}
+        merge({"a": 0}, {"a": 1})  {"a": 1}
+time    time("YYYY-MM-DD")         "2026-08-29"
+        time("HH:MM:SS")           "01:23:00"
+union   union({0, 1}, {1, 2})      {0, 1, 2}
