@@ -35,11 +35,11 @@ def merge(*dicts):
 def now(_format_):
     return time.strftime(
         _format_.replace("YYYY", "%Y")
-        .replace("MM", "%m")
-        .replace("DD", "%d")
-        .replace("HH", "%H")
-        .replace("mm", "%M")
-        .replace("ss", "%S")
+                .replace("MM", "%m")
+                .replace("DD", "%d")
+                .replace("HH", "%H")
+                .replace("mm", "%M")
+                .replace("ss", "%S")
     )
 
 
