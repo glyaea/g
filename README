@@ -9,6 +9,6 @@ type    type(37) == int            True
 concat  concat([0, 1], [1, 2])     [0, 1, 1, 2]
 merge   merge({"a": 0}, {"b": 1})  {"a": 0, "b": 1}
         merge({"a": 0}, {"a": 1})  {"a": 1}
-time    time("YYYY-MM-DD")         "1970-01-01"
-        time("HH:MM:SS")           "00:00:00"
+now     now("YYYY-MM-DD")          "1970-01-01"
+        now("HH:MM:SS")            "00:00:00"
 union   union({0, 1}, {1, 2})      {0, 1, 2}
